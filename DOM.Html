@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <style>
+        #square{
+            height: 250px;
+            width: 400px;
+            border-radius: 5px;
+            background-color: #e55c5c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        .child{
+            height: 50px;
+            width: 50px;
+            background-color: black;
+        }
+        .wraper-box{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-container{
+            display: flex;
+            gap:10px;
+            margin-top: 20px;
+        }
+        button{
+            height: 36px;
+            color: #fff;
+            font-size: initial;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wraper-box">
+    <div> 
+        <div id="square"></div>
+        <div class="btn-container">
+            <button class="color" style="background-color: #c8c817;">Yellow</button>
+            <button class="color" style="background-color: green;">Green</button>
+            <button class="color" style="background-color: red;">Red</button>
+            <button id="add-child" style="background-color: rgb(36, 111, 176);">Add Child</button>
+            <button id="remove-child" style="background-color: orange;"> Remove Child</button>
+        </div>
+    </div>
+</div>
+    <script>
+       let color = document.getElementsByClassName("color");
+       let square = document.getElementById("square");
+         for(let data of color){
+                console.log(data.innerHTML)
+                data.addEventListener("click" , ()=>{
+                    square.style.backgroundColor = `${data.innerHTML}`
+                })
+          }
+
+      let addChild = document.getElementById("add-child");
+      addChild.addEventListener("click" , ()=>{
+        let Child = document.createElement("div");
+        Child.id ="child1"
+        Child.classList = "child";
+        square.appendChild(Child);
+      })
+
+      let removeChild = document.getElementById("remove-child");
+      removeChild.addEventListener("click" , ()=>{
+        let child = document.getElementById("child1");
+        square.removeChild(child)
+      })
+    </script>
+</body>
+</html>
